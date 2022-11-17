@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <title>Fund Me App</title>
+    </head>
+    <body>
+        <h2>Fund Me App</h2>
+        <script src="./index.js" type="module">
+            // type="module" allows us to import into our code
+            // if type="test/javascript", write as <button id="connectButton" onclick="connect()">
+        </script>
+        <div><button id="connectButton">Connect</button></div>
+        <div><button id="balanceButton">getBalance</button></div>
+        <div><button id="withdrawButton">withdraw</button></div>
+        <!-- form -->
+        <div>
+            <label for="fund">ETH Amount</label>
+            <input id="ethAmount" placeholder="0.1" />
+            <button id="fundButton">Fund</button>
+        </div>
+    </body>
+</html>
