@@ -29,7 +29,7 @@ async function connect() {
 }
 
 async function getBalance() {
-    if(typeof window.ethereum != "undefined"){
+    if (typeof window.ethereum != "undefined") {
         const provider = new ethers.providers.Web3Provider(window.ethereum)
         const balance = await provider.getBalance(contractAddress)
         console.log(ethers.utils.formatEther(balance))
@@ -66,21 +66,23 @@ function listenForTransactionMine(transactionResponse, provider) {
     console.log(`Mining ${transactionResponse.hash}...`)
     // listen for this transaction to finish
     return new Promise((resolve, reject) => {
-        // functin does not wait for provider.once to finish, so we need Promise to wrap 
+        // functin does not wait for listener to finish, so we need Promise to wrap
         provider.once(transactionResponse.hash, (transactionReceipt) => {
-            console.log(`Completed with ${transactionReceipt.confirmations} confirmations`)
+            console.log(
+                `Completed with ${transactionReceipt.confirmations} confirmations`
+            )
             resolve()
         })
     })
 }
 
 async function withdraw() {
-    if(typeof window.ethereum != "undefined"){
+    if (typeof window.ethereum != "undefined") {
         console.log("Withdrawing...")
         const provider = new ethers.providers.Web3Provider(window.ethereum)
         const signer = provider.getSigner()
         const contract = new ethers.Contract(contractAddress, abi, signer)
-        try{
+        try {
             const transactionResponse = await contract.cheaperWithdraw()
             await listenForTransactionMine(transactionResponse, provider)
         } catch (error) {
