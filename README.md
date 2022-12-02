@@ -1,2 +1,2 @@
 # web3 frontend
-HTML / Javascript
+raw HTML / Javascript
